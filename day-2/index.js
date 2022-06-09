@@ -30,7 +30,6 @@ function part_1(input) {
 
       case "backward":
         horizontal_position -= units;
-        break;
     }
   });
 
@@ -58,7 +57,6 @@ function part_2(input) {
       case "forward":
         horizontal_position += units;
         depth += aim * units;
-        break;
     }
   });
   console.log(horizontal_position * depth);
