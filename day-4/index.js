@@ -47,19 +47,41 @@ function checkBoard(board, nums) {
   return [Bingo, sum_unmarked];
 }
 
-for (let i = 0; i < random_order.length; i++) {
-  let Bingo;
-  for (let j = 0; j < boards.length; j++) {
-    if (!boards[j]) {
-      continue;
+function part_1(random_order, boards) {
+  for (let i = 0; i < random_order.length; i++) {
+    let Bingo;
+    for (let j = 0; j < boards.length; j++) {
+      if (!boards[j]) {
+        continue;
+      }
+      [Bingo, sum_unmarked] = checkBoard(boards[j], random_order.slice(0, i));
+      if (Bingo) {
+        console.log(sum_unmarked * random_order[i - 1]);
+        break;
+      }
     }
-    [Bingo, sum_unmarked] = checkBoard(boards[j], random_order.slice(0, i));
     if (Bingo) {
-      console.log(sum_unmarked * random_order[i - 1]);
       break;
     }
   }
-  if (Bingo) {
-    break;
+}
+
+function part_2(random_order, boards) {
+  for (let i = 0; i < random_order.length; i++) {
+    let Bingo;
+    for (let j = 0; j < boards.length; j++) {
+      if (!boards[j]) {
+        continue;
+      }
+      [Bingo, sum_unmarked] = checkBoard(boards[j], random_order.slice(0, i));
+      if (Bingo) {
+        console.log(sum_unmarked * random_order[i - 1]);
+        boards[j] = null;
+      }
+    }
   }
 }
+
+part_1(random_order, boards);
+console.log("==========================");
+part_2(random_order, boards);
